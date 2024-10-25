@@ -48,8 +48,8 @@
 		"angular2-smart-table": "^3.3.0",
 		"ckeditor4-angular": "4.0.1",
 		"moment": "^2.30.1",
-		"ngx-infinite-scroll": "^16.0.0",
 		"ng2-charts": "^5.0.4",
+		"ngx-infinite-scroll": "^16.0.0",
 		"ngx-permissions": "^13.0.1",
 		"rxjs": "^7.4.0",
 		"tslib": "^2.6.2"
