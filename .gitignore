@@ -31,6 +31,8 @@ node_modules/
 !.vscode/extensions.json
 
 # misc
+.yarn/cache
+.angular
 /.angular/cache
 /.sass-cache
 /connect.lock
@@ -129,5 +131,3 @@ apps/desktop-timer/src/assets/icons/menu
 apps/desktop/src/assets/icons/menu
 apps/server/src/assets/icons/menu
 apps/server-api/src/assets/icons/menu
-
-.angular
