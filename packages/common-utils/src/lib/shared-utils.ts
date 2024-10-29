@@ -1,75 +1,5 @@
-import slugify from 'slugify';
-
-/**
- * Check is function .
- * @param item
- * @returns {boolean}
- */
-export function isFunction(item: any): boolean {
-	return item && typeof item === 'function' && !Array.isArray(item);
-}
-
-/**
- * Simple object check.
- * @param item
- * @returns {boolean}
- * From https://stackoverflow.com/a/34749873/772859
- */
-export function isObject(item: any): boolean {
-	return item && typeof item === 'object' && !Array.isArray(item);
-}
-
-/**
- * Check is object or function.
- * @param item
- * @returns {boolean}
- */
-export function isObjectOrFunction(item: any): boolean {
-	return isFunction(item) || isObject(item);
-}
-
-/**
- * Check is class instance.
- * @param item
- * @returns {boolean}
- */
-export function isClassInstance(item: any): boolean {
-	return isObject(item) && item.constructor.name !== 'Object';
-}
-
-/**
- * Check value not empty.
- * @param item
- * @returns {boolean}
- */
-export function isNotEmpty(item: any): boolean {
-	return !isEmpty(item);
-}
-
-/**
- * Check value empty.
- * @param item
- * @returns {boolean}
- */
-export function isEmpty(item: any) {
-	if (item instanceof Array) {
-		item = item.filter((val) => !isEmpty(val));
-		return item.length === 0;
-	} else if (item && typeof item === 'object') {
-		for (var key in item) {
-			if (item[key] === null || item[key] === undefined || item[key] === '') {
-				delete item[key];
-			}
-		}
-		return Object.keys(item).length === 0;
-	} else {
-		return !item || (item + '').toLocaleLowerCase() === 'null' || (item + '').toLocaleLowerCase() === 'undefined';
-	}
-}
-
-export function isJsObject(object: any) {
-	return object !== null && object !== undefined && typeof object === 'object';
-}
+import { isNotEmpty } from './is-not-empty';
+import { ucFirst } from './uc-first';
 
 /*
  * Get average value column in array object
@@ -96,16 +26,6 @@ export function retrieveNameFromEmail(email: string): string {
 		return ucFirst(email.substring(0, email.lastIndexOf('@')));
 	}
 	return;
-}
-
-/*
- * Capitalize the first letter of a string being
- */
-export function ucFirst(str: string, force: boolean = true): string {
-	str = force ? str.toLowerCase() : str;
-	return str.replace(/(\b)([a-zA-Z])/, function (firstLetter: string) {
-		return firstLetter.toUpperCase();
-	});
 }
 
 /**
@@ -190,30 +110,6 @@ export const parseToBoolean = (value: any): boolean => {
 		return false; // Return false on parsing errors
 	}
 };
-
-/**
- * Generate slug from string value
- *
- * @param string
- * @param replacement
- * @returns {string}
- */
-export function sluggable(string: string, replacement: any = '-'): string {
-	return slugify(string, {
-		replacement: replacement, // replace spaces with replacement character, defaults to `-`
-		remove: /[*+~()'"!:@,.]/g, // remove characters that match regex, defaults to `undefined`
-		lower: true, // convert to lower case, defaults to `false`
-		trim: true // trim leading and trailing replacement chars, defaults to `true`
-	}).replace(/[_]/g, replacement);
-}
-
-/**
- * How To Make A Sleep Function In TypeScript?
- *
- * @param ms
- * @returns
- */
-export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Trim a string value and return it if not empty, otherwise return undefined
