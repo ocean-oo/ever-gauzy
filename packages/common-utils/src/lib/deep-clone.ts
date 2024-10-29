@@ -1,4 +1,6 @@
-import { isClassInstance, isEmpty, isObject } from './shared-utils';
+import { isClassInstance } from './is-class-instance';
+import { isEmpty } from './is-empty';
+import { isObject } from './is-object';
 
 /**
  * Deeply clones an input value.

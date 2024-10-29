@@ -1,6 +1,6 @@
 import { deepClone } from './deep-clone';
-import { isClassInstance, isObject } from './shared-utils';
-
+import { isClassInstance } from './is-class-instance';
+import { isObject } from './is-object';
 /**
  * Deeply merges two objects.
  *
